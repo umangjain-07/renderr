@@ -25,3 +25,5 @@ flutter:
     - assets/script.js
     - assets/style.css
     - assets/register.html
+    - assets/register.js
+    - assets/register.css

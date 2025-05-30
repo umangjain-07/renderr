@@ -61,13 +61,19 @@ class _HomePageState extends State<HomePage> {
         await assetsDir.create(recursive: true);
       }
 
-      // Copy all necessary files
-      await copyAssetToLocal(
-          'assets/index.html', '${assetsDir.path}/index.html');
-      await copyAssetToLocal(
-          'assets/register.html', '${assetsDir.path}/register.html');
-      await copyAssetToLocal('assets/style.css', '${assetsDir.path}/style.css');
-      await copyAssetToLocal('assets/script.js', '${assetsDir.path}/script.js');
+      // List of all asset files
+      final assetFiles = [
+        'index.html',
+        'register.html',
+        'style.css',
+        'register.css',
+        'script.js',
+        'register.js',
+      ];
+
+      for (final file in assetFiles) {
+        await copyAssetToLocal('assets/$file', '${assetsDir.path}/$file');
+      }
 
       if (mounted) {
         setState(() {
