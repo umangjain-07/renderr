@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register App'),
+        title: const Text('Chatbox app'),
       ),
       body: kIsWeb
           ? htmlContent != null
