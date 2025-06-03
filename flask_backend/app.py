@@ -1,8 +1,27 @@
 from flask import Flask, jsonify, request
+import mysql.connector
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)  # Allow requests from Flutter or WebView
+
+# MySQL connection setup
+
+try:
+    db = mysql.connector.connect(
+        host="localhost",
+        port=3306,
+        user="root",
+        password="772002",
+        database="bidyut"
+    )
+    print("✅ Database connected!")
+except mysql.connector.Error as e:
+    print("❌ Database connection failed!")
+    print("Error:", e)
+
+# Get a cursor for DB operations
+cursor = db.cursor()
 
 @app.route('/')
 def home():
@@ -17,9 +36,18 @@ def login():
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
-    # Auth logic placeholder
-    print(f"[LOGIN] Username: {username}, Password: {password}")
-    return jsonify({"status": "success", "username": username})
+
+    # Check login
+    sql = "SELECT * FROM users WHERE username=%s AND password=%s"
+    val = (username, password)
+    cursor.execute(sql, val)
+    user = cursor.fetchone()
+
+    if user:
+        return jsonify({"status": "success", "username": username})
+    else:
+        return jsonify({"status": "failed", "message": "Invalid credentials"}), 401
+
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -28,6 +56,13 @@ def register():
     username = data.get('username')
     email = data.get('email')
     password = data.get('password')
+    
+    # Insert user into database
+    sql = "INSERT INTO users (fullname, username, email, password) VALUES (%s, %s, %s, %s)"
+    val = (fullname, username, email, password)
+    cursor.execute(sql, val)
+    db.commit()  # Save changes
+    
     print(f"[REGISTER] {fullname}, {username}, {email}")
     return jsonify({"status": "registered", "user": username})
 
