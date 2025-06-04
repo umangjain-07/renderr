@@ -1,10 +1,6 @@
 name: ftest
 description: A new Flutter project.
 
-
-
-
-
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
@@ -30,6 +26,9 @@ flutter:
     - assets/index.html
     - assets/script.js
     - assets/style.css
-    - assets/register.html
-    - assets/register.js
-    - assets/register.css
+    - assets/login.html
+    - assets/login.js
+    - assets/login.css
+    - assets/client_registration.html
+    - assets/client_registration.js
+    - assets/client_registration.css

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Registration - TidBid</title>
+    <link rel="stylesheet" href="client_registration.css">
+</head>
+<body>
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration"></div>
+
+    <div class="container">
+        <div class="logo">TidBid</div>
+        <h1 class="title">Client Registration</h1>
+        <p class="subtitle">Create your client account to start bidding</p>
+
+        <form class="registration-form" id="registrationForm">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="company">Company Name (Optional)</label>
+                <input type="text" id="company" name="company">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <div class="password-strength" id="passwordStrength"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <span class="checkmark"></span>
+                    I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a>
+                </label>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <span class="checkmark"></span>
+                    Subscribe to our newsletter for updates and offers
+                </label>
+            </div>
+
+            <button type="submit" class="register-btn" id="registerBtn">
+                Create Account
+            </button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="#" class="link" id="loginLink">Sign In</a>
+        </div>
+
+        <div class="back-link">
+            <a href="#" class="link" id="backLink">← Back to Role Selection</a>
+        </div>
+    </div>
+
+    <script src="client_registration.js"></script>
+</body>
+</html>
