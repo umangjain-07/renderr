@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidyut Chatbot Admin - Sign In</title>
+    <link rel="stylesheet" href="admin_login.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div class="logo">
+                <h1>Bidyut Chatbot</h1>
+            </div>
+            
+            <div class="illustration">
+                <div class="computer">
+                    <div class="screen">
+                        <div class="screen-content">
+                            <div class="profile-icon"></div>
+                            <div class="menu-bars">
+                                <div class="menu-bar"></div>
+                                <div class="menu-bar"></div>
+                                <div class="menu-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="computer-base"></div>
+                </div>
+                
+                <div class="person">
+                    <div class="person-head"></div>
+                    <div class="person-body"></div>
+                    <div class="person-arm"></div>
+                </div>
+                
+                <div class="floating-elements">
+                    <div class="float-element"></div>
+                    <div class="float-element"></div>
+                </div>
+            </div>
+            
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <h2>Bidyut Innovation</h2>
+                </div>
+                <p>Copyright 2024. All rights reserved.</p>
+                
+                <div class="quick-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Explore Bids</a></li>
+                        <li><a href="#">Terms and Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="login-form">
+                <h2>Sign In</h2>
+                <p class="subtitle">Please enter your credentials to access admin panel</p>
+                
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="email" id="email" placeholder="Email/Username" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder="Password" required>
+                        <span class="toggle-password" onclick="togglePassword()">👁</span>
+                    </div>
+                    
+                    <button type="submit" class="signin-btn">Sign In</button>
+                </form>
+                
+                <div class="form-footer">
+                    <a href="#" class="forgot-password">Forgot your password? Reset it here</a>
+                </div>
+            </div>
+            
+            <div class="connect-section">
+                <h3>Connect with Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘 Facebook</a>
+                    <a href="#" class="social-link">🐦 Twitter</a>
+                    <a href="#" class="social-link">📷 Instagram</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <script src="admin_login.js"></script>
+</body>
+</html>

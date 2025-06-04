@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TidBid - Sign In</title>
+    <link rel="stylesheet" href="client_login.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section with Illustration -->
+        <div class="left-section">
+            <div class="logo">
+                <h2>Bidyut Chatbox</h2>
+            </div>
+            
+            <div class="illustration">
+                <div class="laptop">
+                    <div class="laptop-screen">
+                        <div class="screen-content">
+                            <div class="profile-card">
+                                <div class="avatar"></div>
+                                <div class="card-details">
+                                    <div class="line"></div>
+                                    <div class="line short"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="laptop-base"></div>
+                </div>
+                
+                <div class="person">
+                    <div class="person-head"></div>
+                    <div class="person-body"></div>
+                    <div class="person-arm-left"></div>
+                    <div class="person-arm-right"></div>
+                    <div class="person-leg-left"></div>
+                    <div class="person-leg-right"></div>
+                </div>
+                
+                <div class="floating-elements">
+                    <div class="element element-1"></div>
+                    <div class="element element-2"></div>
+                    <div class="element element-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section with Form -->
+        <div class="right-section">
+            <div class="form-container">
+                <h1>Sign In</h1>
+                <p class="subtitle">Welcome back! Please enter your details</p>
+                
+                <form id="loginForm" class="login-form">
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                        <button type="button" class="password-toggle" id="passwordToggle">👁</button>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="remember">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="sign-in-btn">Sign in</button>
+                    
+                   
+                    
+                    <p class="signup-link">
+                        Don't have an account? 
+                        <a href="#" id="signUpLink">Sign up for free</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <h3>Bidyut Innovation</h3>
+                    </div>
+                    <p>Copyright © 2025. All rights reserved.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            
+                            <li><a href="#">Terms and Conditions</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Connect with Us</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link">Facebook</a>
+                            <a href="#" class="social-link">Twitter</a>
+                            <a href="#" class="social-link">YouTube</a>
+                            <a href="#" class="social-link">LinkedIn</a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="client_login.js"></script>
+</body>
+</html>

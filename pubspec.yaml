@@ -26,9 +26,12 @@ flutter:
     - assets/index.html
     - assets/script.js
     - assets/style.css
-    - assets/login.html
-    - assets/login.js
-    - assets/login.css
+    - assets/client_login.html
+    - assets/client_login.js
+    - assets/client_login.css
     - assets/client_registration.html
     - assets/client_registration.js
     - assets/client_registration.css
+    - assets/admin_login.html
+    - assets/admin_login.js
+    - assets/admin_login.css
