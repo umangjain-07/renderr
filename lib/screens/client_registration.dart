@@ -24,7 +24,7 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
   void initState() {
     super.initState();
     if (kIsWeb) {
-      rootBundle.loadString('assets/client_login.html').then((content) {
+      rootBundle.loadString('assets/client_registration.html').then((content) {
         if (mounted) {
           setState(() {
             htmlContent = content;
@@ -49,9 +49,9 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
 
       // List of all asset files for client registration
       final assetFiles = [
-        'client_login.html',
-        'client_login.css',
-        'client_login.js',
+        'client_registration.html',
+        'client_registration.css',
+        'client_registration.js',
       ];
 
       for (final file in assetFiles) {
@@ -108,7 +108,8 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
               ? InAppWebView(
                   key: webViewKey,
                   initialUrlRequest: URLRequest(
-                    url: WebUri('file://$localDirPath/client_login.html'),
+                    url:
+                        WebUri('file://$localDirPath/client_registration.html'),
                   ),
                   initialOptions: InAppWebViewGroupOptions(
                     crossPlatform: InAppWebViewOptions(

@@ -6,7 +6,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 // Import your client registration screen (comment out if file doesn't exist yet)
-import 'screens/client_registration.dart';
+import 'screens/client_login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,9 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
-    );
+    return const MaterialApp(home: HomePage());
   }
 }
 
@@ -64,11 +62,7 @@ class _HomePageState extends State<HomePage> {
       }
 
       // List of all asset files
-      final assetFiles = [
-        'index.html',
-        'style.css',
-        'script.js',
-      ];
+      final assetFiles = ['index.html', 'style.css', 'script.js'];
 
       for (final file in assetFiles) {
         await copyAssetToLocal('assets/$file', '${assetsDir.path}/$file');
@@ -101,9 +95,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chatbox app'),
-      ),
+      appBar: AppBar(title: const Text('Chatbox app')),
       body: kIsWeb
           ? htmlContent != null
               ? SingleChildScrollView(

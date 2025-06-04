@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admin_dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="admin-profile">
+            <div class="admin-avatar">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Admin" id="adminPhoto">
+            </div>
+            <div class="admin-info">
+                <h3 id="adminName">Jim Hendrix</h3>
+                <span class="status-indicator online"></span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-item active">
+                    <a href="#" class="nav-link" data-page="chat">
+                        <i class="fas fa-comments"></i>
+                        <span>Chat</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="clients">
+                        <i class="fas fa-users"></i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item logout">
+                    <a href="#" class="nav-link" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="navbar">
+            <div class="navbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h2 class="page-title" id="pageTitle">Chat</h2>
+            </div>
+            <div class="navbar-right">
+                <div class="notification-icon" id="notificationIcon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="status-dropdown">
+                    <span class="status-text">Online</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Chat Page -->
+            <div class="page-content active" id="chatPage">
+                <div class="chat-container">
+                    <div class="chat-sidebar">
+                        <div class="chat-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search..." id="searchInput">
+                        </div>
+                        <div class="chat-list" id="chatList">
+                            <div class="chat-item active">
+                                <div class="chat-avatar">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b550?w=50&h=50&fit=crop&crop=face" alt="User">
+                                    <span class="status-dot online"></span>
+                                </div>
+                                <div class="chat-info">
+                                    <h4>Maria Jones</h4>
+                                    <p>Hey there!</p>
+                                    <span class="time">2 min</span>
+                                </div>
+                            </div>
+                            <div class="chat-item">
+                                <div class="chat-avatar">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" alt="User">
+                                    <span class="status-dot offline"></span>
+                                </div>
+                                <div class="chat-info">
+                                    <h4>Bhakar Sheikh</h4>
+                                    <p>Sorry, I'm out of the office today</p>
+                                    <span class="time">5 min</span>
+                                </div>
+                            </div>
+                            <div class="chat-item">
+                                <div class="chat-avatar">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face" alt="User">
+                                    <span class="status-dot online"></span>
+                                </div>
+                                <div class="chat-info">
+                                    <h4>Victor Ericson</h4>
+                                    <p>Nice to meet you</p>
+                                    <span class="time">1 hr</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-main">
+                        <div class="chat-header">
+                            <div class="chat-user-info">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b550?w=50&h=50&fit=crop&crop=face" alt="User">
+                                <div>
+                                    <h3>Gold Coast</h3>
+                                    <p>Resort | Hotel</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message received">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b550?w=40&h=40&fit=crop&crop=face" alt="User">
+                                <div class="message-content">
+                                    <p>We invite you at our office for visit</p>
+                                </div>
+                            </div>
+                            <div class="message sent">
+                                <div class="message-content">
+                                    <p>It has always come just thank you so much</p>
+                                </div>
+                            </div>
+                            <div class="message received">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b550?w=40&h=40&fit=crop&crop=face" alt="User">
+                                <div class="message-content">
+                                    <p>Welcome</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" placeholder="Type a message..." id="messageInput">
+                            <button class="send-btn" id="sendBtn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clients Page -->
+            <div class="page-content" id="clientsPage">
+                <div class="clients-container">
+                    <h2>Client Management</h2>
+                    <div class="clients-grid">
+                        <div class="client-card">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b550?w=80&h=80&fit=crop&crop=face" alt="Client">
+                            <h3>Maria Jones</h3>
+                            <p>Premium Client</p>
+                            <span class="status-badge active">Active</span>
+                        </div>
+                        <div class="client-card">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Client">
+                            <h3>Bhakar Sheikh</h3>
+                            <p>Regular Client</p>
+                            <span class="status-badge inactive">Inactive</span>
+                        </div>
+                        <div class="client-card">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Client">
+                            <h3>Victor Ericson</h3>
+                            <p>New Client</p>
+                            <span class="status-badge active">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div class="page-content" id="settingsPage">
+                <div class="settings-container">
+                    <h2>Settings</h2>
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <h3>Profile Settings</h3>
+                            <p>Update your profile information</p>
+                            <button class="setting-btn">Configure</button>
+                        </div>
+                        <div class="setting-item">
+                            <h3>Notifications</h3>
+                            <p>Manage notification preferences</p>
+                            <button class="setting-btn">Configure</button>
+                        </div>
+                        <div class="setting-item">
+                            <h3>Privacy</h3>
+                            <p>Control your privacy settings</p>
+                            <button class="setting-btn">Configure</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Dropdown -->
+    <div class="notification-dropdown" id="notificationDropdown">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <span class="notification-count">3 new</span>
+        </div>
+        <div class="notification-list">
+            <div class="notification-item">
+                <div class="notification-icon">
+                    <i class="fas fa-message"></i>
+                </div>
+                <div class="notification-content">
+                    <p>New message from Maria Jones</p>
+                    <span class="notification-time">2 minutes ago</span>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="notification-content">
+                    <p>New client registered</p>
+                    <span class="notification-time">1 hour ago</span>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <div class="notification-content">
+                    <p>System update available</p>
+                    <span class="notification-time">3 hours ago</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin_dashboard.js"></script>
+</body>
+</html>

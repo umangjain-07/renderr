@@ -35,3 +35,6 @@ flutter:
     - assets/admin_login.html
     - assets/admin_login.js
     - assets/admin_login.css
+    - assets/admin_dashboard.html
+    - assets/admin_dashboard.js
+    - assets/admin_dashboard.css
