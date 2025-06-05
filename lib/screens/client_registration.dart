@@ -153,3 +153,12 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
     );
   }
 }
+
+void main() {
+  runApp(
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ClientRegistrationScreen(),
+    ),
+  );
+}

@@ -470,3 +470,14 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
     super.dispose();
   }
 }
+
+void main() {
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const ClientRegistrationScreen(
+        selectedRole: 'client',
+      ),
+    ),
+  );
+}

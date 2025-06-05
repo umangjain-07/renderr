@@ -6,15 +6,14 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
-class ClientRegistrationScreen extends StatefulWidget {
-  const ClientRegistrationScreen({super.key});
+class RoleSelection extends StatefulWidget {
+  const RoleSelection({super.key});
 
   @override
-  State<ClientRegistrationScreen> createState() =>
-      _ClientRegistrationScreenState();
+  State<RoleSelection> createState() => _RoleSelectionState();
 }
 
-class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
+class _RoleSelectionState extends State<RoleSelection> {
   String? htmlContent;
   final GlobalKey webViewKey = GlobalKey();
   InAppWebViewController? webViewController;
@@ -78,7 +77,7 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Client Registration'),
+        title: const Text('Role Selection'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -151,4 +150,13 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
               : const Center(child: CircularProgressIndicator()),
     );
   }
+}
+
+void main() {
+  runApp(
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: RoleSelection(),
+    ),
+  );
 }

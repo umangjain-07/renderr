@@ -6,15 +6,14 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
-class ClientRegistrationScreen extends StatefulWidget {
-  const ClientRegistrationScreen({super.key});
+class AdminDashboard extends StatefulWidget {
+  const AdminDashboard({super.key});
 
   @override
-  State<ClientRegistrationScreen> createState() =>
-      _ClientRegistrationScreenState();
+  State<AdminDashboard> createState() => _AdminDashboardState();
 }
 
-class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
+class _AdminDashboardState extends State<AdminDashboard> {
   String? htmlContent;
   final GlobalKey webViewKey = GlobalKey();
   InAppWebViewController? webViewController;
@@ -78,7 +77,7 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Client Registration'),
+        title: const Text('Admin Dashboard'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -108,8 +107,7 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
               ? InAppWebView(
                   key: webViewKey,
                   initialUrlRequest: URLRequest(
-                    url:
-                        WebUri('file://$localDirPath/admin_dashboard.html'),
+                    url: WebUri('file://$localDirPath/admin_dashboard.html'),
                   ),
                   initialOptions: InAppWebViewGroupOptions(
                     crossPlatform: InAppWebViewOptions(
@@ -152,4 +150,13 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
               : const Center(child: CircularProgressIndicator()),
     );
   }
+}
+
+void main() {
+  runApp(
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AdminDashboard(),
+    ),
+  );
 }
