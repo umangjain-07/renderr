@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
   void navigateToClientLogin() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ClientRegistrationScreen()),
+      MaterialPageRoute(builder: (context) => const ClientLoginScreen()),
     );
   }
 

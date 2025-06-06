@@ -132,6 +132,17 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
                   ),
                   onWebViewCreated: (controller) {
                     webViewController = controller;
+                    webViewController?.addJavaScriptHandler(
+                      handlerName: 'navigateToClientLogin',
+                      callback: (args) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ClientLoginScreen()),
+                        );
+                        return null;
+                      },
+                    );
                   },
                   onLoadStop: (controller, url) {
                     debugPrint('Client Registration loaded: $url');
@@ -153,7 +164,7 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              const ClientRegistrationScreen(), // use `ClientLoginScreen` here
+                              const ClientLoginScreen(), // use `ClientLoginScreen` here
                         ),
                       );
                       return NavigationActionPolicy.CANCEL;

@@ -8,20 +8,19 @@ import 'dart:io';
 // Import the new client registration screen
 import 'client_registration.dart';
 
-class ClientRegistrationScreen extends StatefulWidget {
+class ClientLoginScreen extends StatefulWidget {
   final String? selectedRole;
 
-  const ClientRegistrationScreen({
+  const ClientLoginScreen({
     super.key,
     this.selectedRole,
   });
 
   @override
-  State<ClientRegistrationScreen> createState() =>
-      _ClientRegistrationScreenState();
+  State<ClientLoginScreen> createState() => _ClientLoginScreenState();
 }
 
-class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
+class _ClientLoginScreenState extends State<ClientLoginScreen> {
   String? htmlContent;
   final GlobalKey webViewKey = GlobalKey();
   InAppWebViewController? webViewController;
@@ -128,7 +127,7 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ClientRegistrationScreen(
+          builder: (context) => ClientLoginScreen(
             selectedRole: widget.selectedRole,
           ),
         ),
@@ -292,6 +291,17 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
               webViewController = controller;
 
               // Add JavaScript handlers
+              controller.addJavaScriptHandler(
+                handlerName: 'navigateToClientRegistration',
+                callback: (args) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const ClientRegistrationScreen()),
+                  );
+                },
+              );
+
               controller.addJavaScriptHandler(
                 handlerName: 'navigateToSignup',
                 callback: (args) {

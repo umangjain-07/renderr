@@ -197,11 +197,16 @@ backLink.addEventListener('click', (e) => {
     window.location.href = 'back';
 });
 
-loginLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert('Navigate to login screen');
-    // Here you would navigate to login screen
+document.getElementById('loginLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  if (window.flutter_inappwebview) {
+    window.flutter_inappwebview.callHandler('navigateToClientLogin');
+  } else {
+    // fallback for web, just redirect or handle normally
+    window.location.href = 'login.html'; // update path as needed
+  }
 });
+
 
 // Add CSS for spin animation
 const style = document.createElement('style');

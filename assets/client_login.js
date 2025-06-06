@@ -6,6 +6,13 @@ const passwordToggle = document.getElementById('passwordToggle');
 const signInBtn = document.querySelector('.sign-in-btn');
 const rememberCheckbox = document.getElementById('remember');
 const signUpLink = document.getElementById('signUpLink');
+document.getElementById('signUpLink').addEventListener('click', () => {
+  if (window.flutter_inappwebview) {
+    // Call Flutter handler if available
+    window.flutter_inappwebview.callHandler('navigateToClientRegistration');
+  }
+});
+
 
 // Form validation patterns
 const validationPatterns = {
@@ -556,26 +563,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-// Console welcome message
-console.log(`
-🎉 Welcome to TidBid Login Page!
-    
-Demo credentials:
-📧 Email: demo@tidbid.com
-🔐 Password: password123
-
-Features:
-✅ Form validation
-✅ Password visibility toggle
-✅ Remember me functionality
-✅ Responsive design
-✅ Loading states
-✅ Notifications
-✅ Smooth animations
-
-Built with vanilla HTML, CSS, and JavaScript
-`);
 
 // Export functions for testing (if needed)
 if (typeof module !== 'undefined' && module.exports) {
