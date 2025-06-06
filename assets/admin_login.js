@@ -165,3 +165,11 @@ document.addEventListener('DOMContentLoaded', function() {
 console.log('Demo Credentials:');
 console.log('Email: admin@tidbid.com');
 console.log('Password: admin123');
+
+document.getElementById('adminlogindashboard').addEventListener('click', () => {
+  if (window.flutter_inappwebview) {
+    window.flutter_inappwebview.callHandler('navigateToAdminDashboard');
+  } else {
+    window.location.href = 'some';
+  }
+});

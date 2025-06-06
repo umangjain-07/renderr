@@ -5,8 +5,9 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
-// Import your client registration screen (comment out if file doesn't exist yet)
+
 import 'screens/client_login.dart';
+import 'screens/admin_login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomePage());
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    );
   }
 }
 
@@ -61,7 +65,6 @@ class _HomePageState extends State<HomePage> {
         await assetsDir.create(recursive: true);
       }
 
-      // List of all asset files
       final assetFiles = ['index.html', 'style.css', 'script.js'];
 
       for (final file in assetFiles) {
@@ -84,11 +87,17 @@ class _HomePageState extends State<HomePage> {
     await File(localPath).writeAsBytes(bytes);
   }
 
-  // Handle navigation to client registration
-  void navigateToClientRegistration() {
+  void navigateToClientLogin() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ClientRegistrationScreen()),
+    );
+  }
+
+  void navigateToAdminLogin() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const AdminLoginScreen()),
     );
   }
 
@@ -107,10 +116,12 @@ class _HomePageState extends State<HomePage> {
                         padding: HtmlPaddings.all(16),
                       ),
                     },
-                    // Handle link clicks in HTML content
                     onLinkTap: (url, attributes, element) {
-                      if (url != null && url.contains('client')) {
-                        navigateToClientRegistration();
+                      if (url == null) return;
+                      if (url.contains('client')) {
+                        navigateToClientLogin();
+                      } else if (url.contains('admin')) {
+                        navigateToAdminLogin();
                       }
                     },
                   ),
@@ -136,28 +147,29 @@ class _HomePageState extends State<HomePage> {
                   onWebViewCreated: (controller) {
                     webViewController = controller;
 
-                    // Add JavaScript handler for navigation
                     controller.addJavaScriptHandler(
                       handlerName: 'navigateToClient',
                       callback: (args) {
-                        navigateToClientRegistration();
+                        navigateToClientLogin();
+                      },
+                    );
+                    controller.addJavaScriptHandler(
+                      handlerName: 'navigateToAdmin',
+                      callback: (args) {
+                        navigateToAdminLogin();
                       },
                     );
                   },
-                  onLoadStop: (controller, url) {
-                    debugPrint('Navigated to: $url');
-                  },
-                  // Handle URL changes/clicks
                   shouldOverrideUrlLoading:
                       (controller, navigationAction) async {
                     final url = navigationAction.request.url.toString();
-
-                    // Check if it's a client registration URL
-                    if (url.contains('client') || url.contains('register')) {
-                      navigateToClientRegistration();
+                    if (url.contains('client')) {
+                      navigateToClientLogin();
+                      return NavigationActionPolicy.CANCEL;
+                    } else if (url.contains('admin')) {
+                      navigateToAdminLogin();
                       return NavigationActionPolicy.CANCEL;
                     }
-
                     return NavigationActionPolicy.ALLOW;
                   },
                 )

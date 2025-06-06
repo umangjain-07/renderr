@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:ftest/screens/admin_dashboard.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
@@ -129,6 +130,15 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                   ),
                   onWebViewCreated: (controller) {
                     webViewController = controller;
+                    controller.addJavaScriptHandler(
+                      handlerName: 'navigateToAdminDashboard',
+                      callback: (args) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const AdminDashboard()));
+                      },
+                    );
                   },
                   onLoadStop: (controller, url) {
                     debugPrint('Client Registration loaded: $url');

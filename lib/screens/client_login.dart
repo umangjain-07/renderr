@@ -471,13 +471,13 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
   }
 }
 
-void main() {
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const ClientRegistrationScreen(
-        selectedRole: 'client',
-      ),
-    ),
-  );
-}
+// void main() {
+//   runApp(
+//     MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: const ClientRegistrationScreen(
+//         selectedRole: 'client',
+//       ),
+//     ),
+//   );
+// }

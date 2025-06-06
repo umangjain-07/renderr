@@ -5,6 +5,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'client_login.dart';
 
 class ClientRegistrationScreen extends StatefulWidget {
   const ClientRegistrationScreen({super.key});
@@ -139,26 +140,37 @@ class _ClientRegistrationScreenState extends State<ClientRegistrationScreen> {
                       (controller, navigationAction) async {
                     final uri = navigationAction.request.url!;
 
-                    // Handle navigation back to role selection
-                    if (uri.toString().contains('back') ||
-                        uri.toString().contains('role-selection')) {
+                    final urlStr = uri.toString().toLowerCase();
+
+                    if (urlStr.contains('back') ||
+                        urlStr.contains('role-selection')) {
                       Navigator.pop(context);
                       return NavigationActionPolicy.CANCEL;
                     }
 
+                    if (urlStr.contains('signin') || urlStr.contains('login')) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const ClientRegistrationScreen(), // use `ClientLoginScreen` here
+                        ),
+                      );
+                      return NavigationActionPolicy.CANCEL;
+                    }
+
                     return NavigationActionPolicy.ALLOW;
-                  },
-                )
+                  })
               : const Center(child: CircularProgressIndicator()),
     );
   }
 }
 
-void main() {
-  runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ClientRegistrationScreen(),
-    ),
-  );
-}
+// void main() {
+//   runApp(
+//     const MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: ClientRegistrationScreen(),
+//     ),
+//   );
+// }

@@ -41,8 +41,14 @@ continueBtn.addEventListener('click', () => {
         setTimeout(() => {
             // Trigger Dart side navigation to ClientRegistration
             if (window.flutter_inappwebview) {
-                window.flutter_inappwebview.callHandler('navigateToClient');
-            } else {
+    if (selectedRole === 'client') {
+        window.flutter_inappwebview.callHandler('navigateToClient');
+    } else if (selectedRole === 'admin') {
+        window.flutter_inappwebview.callHandler('navigateToAdmin');
+    }
+}
+ 
+            else {
                 alert('Navigation not supported in this environment.');
             }
         }, 1500);
