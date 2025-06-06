@@ -178,6 +178,7 @@ form.addEventListener('submit', async (e) => {
         // Simulate redirect to login after success
         setTimeout(() => {
             alert('Registration successful! You can now log in.');
+            window.flutter_inappwebview.callHandler('navigateToClientLogin');
             // Here you would typically navigate to login screen
             // In Flutter context, you might want to pop back or navigate
         }, 2000);
