@@ -11,6 +11,9 @@
     <!-- Sidebar Overlay for Mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     
+    <!-- Chat Overlay for Mobile -->
+    <div class="chat-overlay" id="chatOverlay"></div>
+    
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="admin-profile">
@@ -116,106 +119,87 @@
 
         <!-- Content Area -->
         <div class="content-area">
-            <!-- Chat Page -->
+            <!-- Chat List Page -->
             <div class="page-content active" id="chatPage">
-                <div class="chat-container">
-                    <div class="chat-sidebar">
-                        <div class="chat-search">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Search conversations...">
+                <div class="chat-list-container">
+                    <div class="chat-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search conversations..." id="chatSearchInput">
+                    </div>
+                    <div class="chat-list">
+                        <div class="chat-item active" data-chat="sarah">
+                            <div class="chat-avatar">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b1e5?w=100&h=100&fit=crop&crop=face" alt="Sarah">
+                                <div class="status-dot online"></div>
+                            </div>
+                            <div class="chat-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Hey, how are you doing today?</p>
+                            </div>
+                            <span class="time">2m</span>
                         </div>
-                        <div class="chat-list">
-                            <div class="chat-item active">
-                                <div class="chat-avatar">
-                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b1e5?w=100&h=100&fit=crop&crop=face" alt="Sarah">
-                                    <div class="status-dot online"></div>
-                                </div>
-                                <div class="chat-info">
-                                    <h4>Sarah Johnson</h4>
-                                    <p>Hey, how are you doing today?</p>
-                                </div>
-                                <span class="time">2m</span>
+                        <div class="chat-item" data-chat="mike">
+                            <div class="chat-avatar">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Mike">
+                                <div class="status-dot online"></div>
                             </div>
-                            <div class="chat-item">
-                                <div class="chat-avatar">
-                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Mike">
-                                    <div class="status-dot online"></div>
-                                </div>
-                                <div class="chat-info">
-                                    <h4>Mike Chen</h4>
-                                    <p>Thanks for the quick response!</p>
-                                </div>
-                                <span class="time">1h</span>
+                            <div class="chat-info">
+                                <h4>Mike Chen</h4>
+                                <p>Thanks for the quick response!</p>
                             </div>
-                            <div class="chat-item">
-                                <div class="chat-avatar">
-                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Emma">
-                                    <div class="status-dot offline"></div>
-                                </div>
-                                <div class="chat-info">
-                                    <h4>Emma Wilson</h4>
-                                    <p>Can we schedule a meeting?</p>
-                                </div>
-                                <span class="time">3h</span>
+                            <span class="time">1h</span>
+                        </div>
+                        <div class="chat-item" data-chat="emma">
+                            <div class="chat-avatar">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Emma">
+                                <div class="status-dot offline"></div>
                             </div>
-                            <div class="chat-item">
-                                <div class="chat-avatar">
-                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" alt="David">
-                                    <div class="status-dot online"></div>
-                                </div>
-                                <div class="chat-info">
-                                    <h4>David Brown</h4>
-                                    <p>Perfect! Let's do it.</p>
-                                </div>
-                                <span class="time">5h</span>
+                            <div class="chat-info">
+                                <h4>Emma Wilson</h4>
+                                <p>Can we schedule a meeting?</p>
+                            </div>
+                            <span class="time">3h</span>
+                        </div>
+                        <div class="chat-item" data-chat="david">
+                            <div class="chat-avatar">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" alt="David">
+                                <div class="status-dot online"></div>
+                            </div>
+                            <div class="chat-info">
+                                <h4>David Brown</h4>
+                                <p>Perfect! Let's do it.</p>
+                            </div>
+                            <span class="time">5h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat View Page (hidden by default) -->
+            <div class="page-content" id="chatViewPage">
+                <div class="chat-view-container">
+                    <div class="chat-header">
+                        <button class="chat-back-btn" id="chatBackBtn">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <div class="chat-user-info">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b1e5?w=100&h=100&fit=crop&crop=face" alt="Sarah" id="chatUserImg">
+                            <div>
+                                <h3 id="chatUserName">Sarah Johnson</h3>
+                                <p id="chatUserStatus">Active now</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="chat-main">
-                        <div class="chat-header">
-                            <div class="chat-user-info">
-                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b1e5?w=100&h=100&fit=crop&crop=face" alt="Sarah">
-                                <div>
-                                    <h3>Sarah Johnson</h3>
-                                    <p>Active now</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="chat-messages" id="chatMessages">
-                            <div class="message">
-                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b1e5?w=100&h=100&fit=crop&crop=face" alt="Sarah">
-                                <div class="message-content">
-                                    Hey! How are you doing today?
-                                </div>
-                            </div>
-                            <div class="message sent">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="You">
-                                <div class="message-content">
-                                    Hi Sarah! I'm doing great, thanks for asking. How about you?
-                                </div>
-                            </div>
-                            <div class="message">
-                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b1e5?w=100&h=100&fit=crop&crop=face" alt="Sarah">
-                                <div class="message-content">
-                                    I'm doing well! Just wanted to check in and see how the project is going.
-                                </div>
-                            </div>
-                            <div class="message sent">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="You">
-                                <div class="message-content">
-                                    The project is going smoothly! We should have everything ready by the end of the week.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="chat-input">
-                            <input type="text" placeholder="Type your message..." id="messageInput">
-                            <button class="send-btn" id="sendBtn">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Messages will be loaded here -->
+                    </div>
+                    
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type your message..." id="messageInput">
+                        <button class="send-btn" id="sendBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -306,6 +290,5 @@
         </div>
     </div>
     <script src="admin_dashboard.js"></script>
-    
 </body>
 </html>
