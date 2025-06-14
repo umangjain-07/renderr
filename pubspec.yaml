@@ -38,3 +38,6 @@ flutter:
     - assets/admin_dashboard.html
     - assets/admin_dashboard.js
     - assets/admin_dashboard.css
+    - assets/clients.html
+    - assets/clients.js
+    - assets/clients.css

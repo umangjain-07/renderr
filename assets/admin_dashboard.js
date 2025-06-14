@@ -176,7 +176,8 @@ function sendMessage() {
                 "That sounds great!",
                 "I'll get back to you on that.",
                 "Perfect, let's do it!",
-                "Absolutely, I agree."
+                "Absolutely, I agree.",
+                "Sure, I can help with that."
             ];
             const randomResponse = responses[Math.floor(Math.random() * responses.length)];
             addMessage(randomResponse, false);

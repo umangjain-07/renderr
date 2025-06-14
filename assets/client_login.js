@@ -90,7 +90,7 @@ async function handleFormSubmission(e) {
             
             // Simulate redirect after delay
             setTimeout(() => {
-                showNotification('Welcome to TidBid Dashboard!', 'success');
+                showNotification('Welcome to Bidyut Dashboard!', 'success');
             }, 2000);
             
         } else {
@@ -218,20 +218,6 @@ async function simulateLogin(email, password) {
     // Simulate network delay
     await new Promise(resolve => setTimeout(resolve, 2000));
     
-    // Demo credentials for testing
-    const demoCredentials = {
-        'demo@tidbid.com': 'password123',
-        'test@example.com': 'testpass123'
-    };
-    
-    if (demoCredentials[email] && demoCredentials[email] === password) {
-        return { success: true, user: { email, name: 'Demo User' } };
-    } else if (email && password.length >= 8) {
-        // Accept any valid email/password combination for demo
-        return { success: true, user: { email, name: 'User' } };
-    } else {
-        return { success: false, message: 'Invalid email or password' };
-    }
 }
 
 // Google login handler
@@ -270,10 +256,7 @@ function saveCredentials(email) {
         timestamp: Date.now()
     };
     
-    // In a real app, you'd use secure storage
-    // For demo, we'll use a simple variable
     window.rememberedCredentials = credentials;
-    showNotification('Credentials will be remembered for 30 days', 'info');
 }
 
 function loadRememberedCredentials() {
@@ -490,50 +473,6 @@ rippleStyle.textContent = `
 document.head.appendChild(rippleStyle);
 
 // Demo mode helper - shows demo credentials
-function showDemoHelper() {
-    const demoHelper = document.createElement('div');
-    demoHelper.innerHTML = `
-        <div style="
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            max-width: 250px;
-            z-index: 1000;
-        ">
-            <strong>Demo Mode</strong><br>
-            Try these credentials:<br>
-            <code>demo@tidbid.com</code><br>
-            <code>password123</code>
-            <button onclick="this.parentElement.remove()" style="
-                position: absolute;
-                top: 5px;
-                right: 8px;
-                background: none;
-                border: none;
-                color: white;
-                cursor: pointer;
-                font-size: 1.2rem;
-            ">×</button>
-        </div>
-    `;
-    
-    document.body.appendChild(demoHelper);
-    
-    // Auto-hide after 10 seconds
-    setTimeout(() => {
-        if (demoHelper.parentNode) {
-            demoHelper.remove();
-        }
-    }, 10000);
-}
-
-// Show demo helper after page loads
-setTimeout(showDemoHelper, 3000);
 
 // Performance optimization - lazy load heavy animations
 const observer = new IntersectionObserver((entries) => {
