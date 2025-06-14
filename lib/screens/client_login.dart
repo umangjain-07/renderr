@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 // Import the new client registration screen
 import 'client_registration.dart';
+import 'clients.dart';
 
 class ClientLoginScreen extends StatefulWidget {
   final String? selectedRole;
@@ -135,6 +136,25 @@ class _ClientLoginScreenState extends State<ClientLoginScreen> {
     } catch (e) {
       debugPrint('Navigation to registration error: $e');
       _showErrorSnackBar('Failed to navigate to registration');
+    }
+  }
+
+  void _navigateToClients([Map<String, dynamic>? userData]) {
+    if (!mounted) return;
+
+    try {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Clients(
+              // Pass any user data if needed
+              // userData: userData,
+              ),
+        ),
+      );
+    } catch (e) {
+      debugPrint('Navigation to clients error: $e');
+      _showErrorSnackBar('Failed to navigate to clients');
     }
   }
 
@@ -311,6 +331,16 @@ class _ClientLoginScreenState extends State<ClientLoginScreen> {
                     userData = Map<String, dynamic>.from(args[0]);
                   }
                   _navigateToClientRegistration(userData);
+                },
+              );
+
+              // Add this new handler for clients navigation
+              controller.addJavaScriptHandler(
+                handlerName: 'navigateToClients',
+                callback: (args) {
+                  _navigateToClients(args.isNotEmpty
+                      ? Map<String, dynamic>.from(args[0])
+                      : null);
                 },
               );
 

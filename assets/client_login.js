@@ -6,14 +6,13 @@ const passwordToggle = document.getElementById('passwordToggle');
 const signInBtn = document.querySelector('.sign-in-btn');
 const rememberCheckbox = document.getElementById('remember');
 const signUpLink = document.getElementById('signUpLink');
+
 document.getElementById('signUpLink').addEventListener('click', () => {
   if (window.flutter_inappwebview) {
     // Call Flutter handler if available
     window.flutter_inappwebview.callHandler('navigateToClientRegistration');
   }
 });
-
-
 // Form validation patterns
 const validationPatterns = {
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -59,49 +58,6 @@ function initializeEventListeners() {
     });
 }
 
-// Form submission handler
-async function handleFormSubmission(e) {
-    e.preventDefault();
-    
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-    
-    // Validate form
-    if (!validateForm()) {
-        return;
-    }
-    
-    // Show loading state
-    setLoadingState(true);
-    
-    try {
-        // Simulate API call
-        const loginResult = await simulateLogin(email, password);
-        
-        if (loginResult.success) {
-            // Handle remember me
-            if (rememberCheckbox.checked) {
-                saveCredentials(email);
-            } else {
-                clearSavedCredentials();
-            }
-            
-            showNotification('Login successful! Redirecting...', 'success');
-            
-            // Simulate redirect after delay
-            setTimeout(() => {
-                showNotification('Welcome to Bidyut Dashboard!', 'success');
-            }, 2000);
-            
-        } else {
-            showNotification(loginResult.message, 'error');
-        }
-    } catch (error) {
-        showNotification('Network error. Please try again.', 'error');
-    } finally {
-        setLoadingState(false);
-    }
-}
 
 // Form validation
 function validateForm() {
@@ -213,14 +169,114 @@ function setLoadingState(isLoading) {
     }
 }
 
-// Simulate login API call
-async function simulateLogin(email, password) {
-    // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+// Add null checks at the beginning
+if (!loginForm || !emailInput || !passwordInput || !passwordToggle || !signInBtn) {
+    console.error('Required form elements not found');
+    if (window.flutter_inappwebview) {
+        window.flutter_inappwebview.callHandler('showError', 'Form elements missing');
+    }
 }
 
-// Google login handler
+// Fix the simulateLogin function to return a proper response
+async function simulateLogin(email, password) {
+    try {
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Return a successful login response
+        return { 
+            success: true, 
+            message: 'Login successful' 
+        };
+    } catch (error) {
+        console.error('Login simulation error:', error);
+        return {
+            success: false,
+            message: 'Network error. Please try again.'
+        };
+    }
+}
+
+// Update handleFormSubmission to prevent duplicate submissions
+let isSubmitting = false;
+
+async function handleFormSubmission(e) {
+    e.preventDefault();
+    
+    if (isSubmitting) return;
+    isSubmitting = true;
+    
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    
+    if (!validateForm()) {
+        isSubmitting = false;
+        return;
+    }
+    
+    setLoadingState(true);
+    
+    try {
+        const loginResult = await simulateLogin(email, password);
+        
+        if (loginResult.success) {
+            if (rememberCheckbox.checked) saveCredentials(email);
+            
+            showNotification('Login successful! Redirecting...', 'success');
+            
+            // Add slight delay before navigation
+            setTimeout(() => {
+                if (window.flutter_inappwebview) {
+                    window.flutter_inappwebview.callHandler('navigateToClients');
+                }
+            }, 1500);
+        } else {
+            showNotification(loginResult.message, 'error');
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        showNotification('Unexpected error occurred', 'error');
+    } finally {
+        isSubmitting = false;
+        setLoadingState(false);
+    }
+}
+
+// Add safe event listener helper
+function safeAddEventListener(element, event, handler) {
+    if (element) {
+        element.addEventListener(event, handler);
+    } else {
+        console.error(`Element not found for ${event} event`);
+    }
+}
+
+// Update initializeEventListeners to use safeAddEventListener
+function initializeEventListeners() {
+    safeAddEventListener(loginForm, 'submit', handleFormSubmission);
+    safeAddEventListener(passwordToggle, 'click', togglePasswordVisibility);
+    safeAddEventListener(emailInput, 'blur', () => validateField(emailInput, 'email'));
+    safeAddEventListener(passwordInput, 'blur', () => validateField(passwordInput, 'password'));
+    safeAddEventListener(emailInput, 'input', () => clearErrors(emailInput));
+    safeAddEventListener(passwordInput, 'input', () => clearErrors(passwordInput));
+    
+    const googleBtn = document.querySelector('.google-btn');
+    if (googleBtn) {
+        googleBtn.addEventListener('click', handleGoogleLogin);
+    }
+    
+    safeAddEventListener(signUpLink, 'click', (e) => {
+        e.preventDefault();
+        showNotification('Sign up functionality will be implemented soon!', 'info');
+    });
+    
+    const forgotPassword = document.querySelector('.forgot-password');
+    if (forgotPassword) {
+        forgotPassword.addEventListener('click', (e) => {
+            e.preventDefault();
+            handleForgotPassword();
+        });
+    }
+}// Google login handler
 function handleGoogleLogin() {
     showNotification('Google Sign-In integration coming soon!', 'info');
     

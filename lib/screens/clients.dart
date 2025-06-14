@@ -152,11 +152,11 @@ class _ClientsState extends State<Clients> {
   }
 }
 
-void main() {
-  runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Clients(),
-    ),
-  );
-}
+// void main() {
+//   runApp(
+//     const MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: Clients(),
+//     ),
+//   );
+// }
