@@ -25,7 +25,7 @@ class _ClientsState extends State<Clients> {
     if (kIsWeb) {
       rootBundle.loadString('assets/clients.html').then((content) {
         if (mounted) {
-          setState(() {
+          setState(() {   
             htmlContent = content;
           });
         }

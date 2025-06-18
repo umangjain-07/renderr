@@ -294,7 +294,7 @@ class _ClientLoginScreenState extends State<ClientLoginScreen> {
                 useShouldOverrideUrlLoading: true,
                 mediaPlaybackRequiresUserGesture: false,
                 supportZoom: false,
-                userAgent: 'TidBid-Flutter-App',
+                userAgent: 'Bidyut-Flutter-App',
               ),
               android: AndroidInAppWebViewOptions(
                 useHybridComposition: true,
