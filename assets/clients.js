@@ -1,11 +1,11 @@
 // Global variables
 let currentUser = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '+1 234 567 8900',
-    school: 'ABC University',
-    memberSince: 'January 2024',
-    initials: 'JD'
+    name: 'Naruto Uzumaki',
+    email: 'uzumakinaruto@datebayo.com',
+    phone: '1061061067',
+    school: 'Konoha Academy',
+    memberSince: 'October 2022',
+    initials: 'NU'
 };
 
 let messages = [];

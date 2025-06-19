@@ -7,7 +7,7 @@ class AuthGuard extends StatelessWidget {
   final Widget child;
   final String requiredRole;
 
-  AuthGuard({required this.child, required this.requiredRole});
+  const AuthGuard({super.key, required this.child, required this.requiredRole});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class AuthGuard extends StatelessWidget {
         } else if (userRole != requiredRole) {
           // Wrong role, redirect to their dashboard
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            Navigator.pushReplacementNamed(context, '/${userRole}/dashboard');
+            Navigator.pushReplacementNamed(context, '/$userRole/dashboard');
           });
           return Container();
         } else {

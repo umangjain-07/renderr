@@ -1,15 +1,22 @@
 const roleCards = document.querySelectorAll('.role-card');
 const continueBtn = document.getElementById('continueBtn');
-const selectedRoleSpan = document.getElementById('selectedRole');
+let selectedRoleSpan = document.getElementById('selectedRole'); // Remove const so we can reassign
 let selectedRole = null;
-let loadingTimeout = null; // Track the loading timeout
+let loadingTimeout = null;
+let isLoading = false; // Track loading state
 
 roleCards.forEach(card => {
     card.addEventListener('click', () => {
         roleCards.forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         selectedRole = card.dataset.role;
-        selectedRoleSpan.textContent = selectedRole.charAt(0).toUpperCase() + selectedRole.slice(1);
+        
+        // Get fresh reference to selectedRole span (in case button was reset)
+        selectedRoleSpan = document.getElementById('selectedRole');
+        if (selectedRoleSpan) {
+            selectedRoleSpan.textContent = selectedRole.charAt(0).toUpperCase() + selectedRole.slice(1);
+        }
+        
         continueBtn.classList.add('active');
         continueBtn.classList.add('pulse');
         setTimeout(() => {
@@ -33,20 +40,33 @@ roleCards.forEach(card => {
 // Function to reset the continue button to its original state
 function resetContinueButton() {
     if (selectedRole) {
+        isLoading = false;
         continueBtn.innerHTML = `Continue as <span id="selectedRole">${selectedRole.charAt(0).toUpperCase() + selectedRole.slice(1)}</span>`;
         continueBtn.classList.add('active');
-        // Re-assign the selectedRoleSpan reference since we recreated the element
-        const newSelectedRoleSpan = document.getElementById('selectedRole');
+        
+        // Update the reference to the new selectedRole span
+        selectedRoleSpan = document.getElementById('selectedRole');
+        
+        // Clear any existing timeout
+        if (loadingTimeout) {
+            clearTimeout(loadingTimeout);
+            loadingTimeout = null;
+        }
+        
+        console.log('Button reset to normal state');
     }
 }
 
 continueBtn.addEventListener('click', () => {
-    if (selectedRole) {
+    if (selectedRole && !isLoading) {
+        isLoading = true;
+        
         // Clear any existing timeout
         if (loadingTimeout) {
             clearTimeout(loadingTimeout);
         }
 
+        // Show loading state
         continueBtn.innerHTML = `
             <span style="display: inline-flex; align-items: center; gap: 10px;">
                 <span style="width: 20px; height: 20px; border: 2px solid white; border-top: 2px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></span>
@@ -54,32 +74,32 @@ continueBtn.addEventListener('click', () => {
             </span>
         `;
 
-        // Set a timer to reset the button after 5 seconds (adjustable)
+        // Set a timer to ALWAYS reset the button after 3 seconds
         loadingTimeout = setTimeout(() => {
             resetContinueButton();
-            // Optional: Show a message or alert that the operation timed out
-            console.log('Loading timed out, button reset');
-        }, 5000); // 5 seconds - you can adjust this value
+            console.log('Auto-reset after 3 seconds');
+        }, 3000); // 3 seconds - shorter for better UX
 
+        // Try Flutter navigation after a brief delay
         setTimeout(() => {
-            // Clear the reset timeout if navigation succeeds
-            if (loadingTimeout) {
-                clearTimeout(loadingTimeout);
-            }
-
-            // Trigger Dart side navigation to ClientRegistration
-            if (window.flutter_inappwebview) {
-                if (selectedRole === 'client') {
-                    window.flutter_inappwebview.callHandler('navigateToClient');
-                } else if (selectedRole === 'admin') {
-                    window.flutter_inappwebview.callHandler('navigateToAdmin');
+            try {
+                if (window.flutter_inappwebview) {
+                    if (selectedRole === 'client') {
+                        window.flutter_inappwebview.callHandler('navigateToClient');
+                    } else if (selectedRole === 'admin') {
+                        window.flutter_inappwebview.callHandler('navigateToAdmin');
+                    }
+                    console.log('Flutter navigation called');
+                } else {
+                    console.log('Flutter InAppWebView not available');
                 }
-            } else {
-                alert('Navigation not supported in this environment.');
-                // Reset the button since navigation failed
-                resetContinueButton();
+            } catch (error) {
+                console.log('Error calling Flutter navigation:', error);
             }
-        }, 1500);
+            
+            // Note: We don't clear the timeout here anymore
+            // The button will always reset after 3 seconds regardless
+        }, 500); // Small delay before trying navigation
     }
 });
 
